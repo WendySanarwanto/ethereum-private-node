@@ -1,15 +1,15 @@
 # ethereum-private-node
 
-Contain hint and a collection of shell scripts that can be followed & used for creating a private Ethereum node.
+Collection of hints and shell scripts that can be followed & used for creating & running a private Ethereum node.
 
-## Setup Environment
+## Setup Environment.
 
-* Install latest version of [Node.JS]().
+* Install latest version of [Node.JS](https://nodejs.org/en/).
 
 * Install `Go-Ethereum` or [Geth](https://github.com/ethereum/go-ethereum/wiki/Installing-Geth).
 
 
-## How to create a private Ethereum node
+## How to create a private Ethereum node.
 
 * Open a terminal box, go to your home directory (e.g. Type `cd ~`, `cd $HOME`) and create a new directory (e.g. `mkdir -p ethereum/MyEthNode`).
 
@@ -49,7 +49,7 @@ Contain hint and a collection of shell scripts that can be followed & used for c
 
 Run `geth attach` command, to interact with running private node. If running the command is succeded, there will be a shell prompt appear. Below are things that we could do by running commands on the shell prompt.
 
-### Accounts and Balance
+### Accounts and Balance.
 
 * Run `eth.accounts` command for displaying an array of account addresses.
 
@@ -70,14 +70,23 @@ Run `geth attach` command, to interact with running private node. If running the
 * Run `personal.lockAccount(eth.accounts[2])` command to lock account #3, preventing it from being used for sending ether. 
 
 
-### Miner
+### Miner.
 
 * Run `miner.stop` to stop the mining process.
 
 * Run `miner.start(2)` to start the mining process which occupy 2 CPU threads.
 
-### Sending Ether
+### Sending Ether from Coinbase account to other account.
 
-__TBD__
+* Run `eth.sendTransaction({from: eth.coinbase, to: eth.accounts[2], value: web3.toWei('40', 'ether')})` to send `40 Ether` from coinbase account to account #3.
 
+### Sending Ether from an account to another account.
+
+* Run `personal.unlockAccount(eth.accounts[1], "test1234", 300)` command to unlock account #2 whose password is `test1234`, for 300 seconds.
+
+* Run `eth.sendTransaction({from: eth.accounts[1], to: eth.accounts[2], value: web3.toWei('5', 'ether')})` command to send `5 ether` from account #2 to account account #3.
+
+## How to connect metamask to the private Ethereum network
+
+TBD
 
